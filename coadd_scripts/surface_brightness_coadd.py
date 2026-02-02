@@ -293,7 +293,7 @@ def stack_spectra(input_files,dr_name,galaxy_type):
 
 # In[4]:
 def save_results(wave, flux, error, residual, 
-                 snr_narrow, snr_broad, valid_bins, 
+                 snr_broad, valid_bins, 
                  n_spectra, continuum, noise, output_dir,
                  galaxy_type,dr_name,processed_fibers):
     """Save numerical results to files"""
@@ -305,7 +305,6 @@ def save_results(wave, flux, error, residual,
         'flux': flux,
         'error': error,
         'residual': residual,
-        'snr_narrow': snr_narrow,
         'snr_broad': snr_broad,
         'valid_bins': valid_bins,
         'n_spectra': n_spectra,
@@ -341,8 +340,8 @@ def save_results(wave, flux, error, residual,
 
 def find_lines_in_spectrum (wave, flux, valid_bins):
     """ SG filter to create a smoothed spectrum; G filter to convolve new spectrum """
-    # window must be odd
-    window_length=205
+    # note: alrger window than normal coadding
+    window_length=505
     if window_length % 2 == 0:
         window_length += 1
     
@@ -357,19 +356,18 @@ def find_lines_in_spectrum (wave, flux, valid_bins):
     residual = flux - continuum
     residual_for_conv = np.where(valid_bins, residual, 0)
     
-    smoothed_narrow = gaussian_filter1d(residual_for_conv, sigma=3)
+    # note, no narrow!
     smoothed_broad = gaussian_filter1d(residual_for_conv, sigma=15)
     # @ invalid bins: smoothed values = NaN
-    smoothed_narrow[~valid_bins] = np.nan
     smoothed_broad[~valid_bins] = np.nan
     
-    return residual, smoothed_narrow, smoothed_broad, continuum
+    return residual, smoothed_broad, continuum
 
 
 # In[6]:
 
 
-def compute_SNR(residual, smoothed_narrow, smoothed_broad, valid_bins):
+def compute_SNR(residual, smoothed_broad, valid_bins):
     """ estimate noise, find SNR """
     # NOTE: this part of script isnt really useful - pass it into REAL SNR script in vscode
     print("Computing SNR")
@@ -394,15 +392,13 @@ def compute_SNR(residual, smoothed_narrow, smoothed_broad, valid_bins):
                 noise[start:end][valid_in_window] = noise_estimate
             
     # initialize array to store SNR  
-    snr_narrow = np.full_like(residual, np.nan)
     snr_broad = np.full_like(residual, np.nan)
 
     # Calculate SNR @ valid noise / valid bins, not NaN
-    valid_for_snr = (noise > 0) & valid_bins & ~np.isnan(smoothed_narrow) & ~np.isnan(smoothed_broad)
-    snr_narrow[valid_for_snr] = smoothed_narrow[valid_for_snr] / noise[valid_for_snr]
+    valid_for_snr = (noise > 0) & valid_bins & ~np.isnan(smoothed_broad)
     snr_broad[valid_for_snr] = smoothed_broad[valid_for_snr] / noise[valid_for_snr]
 
-    return snr_narrow, snr_broad, noise
+    return snr_broad, noise
 
 
 # In[7]:
@@ -462,8 +458,8 @@ def plot_all_fiber_mask(wave, all_fiber_mask, alpha=0.15, color='green'):
                 plt.axvspan(wave[i], wave[i+1], alpha=alpha, color=color)
 
 def plot(wave,flux,continuum,residual,
-         smoothed_narrow, smoothed_broad,
-         noise,snr_narrow,snr_broad,valid,
+         smoothed_broad,
+         noise,snr_broad,valid,
          all_fiber_mask,output_dir, ends = True):
     
     os.makedirs(output_dir, exist_ok=True)
@@ -498,8 +494,7 @@ def plot(wave,flux,continuum,residual,
     
     # Gaussian smoothed residuals
     plt.figure(figsize=(14, 6))
-    plt.plot(wave, smoothed_narrow, label='Gaussian Smoothed Residual (Narrow)', color='purple')
-    plt.plot(wave, smoothed_broad, label='Gaussian Smoothed Residual (Broad)', color='orange')
+    plt.plot(wave, smoothed_broad, label='Gaussian Smoothed Residual (15 Å)', color='orange')
     plot_all_fiber_mask(wave, all_fiber_mask, alpha=0.15, color='green')
     plt.xlabel('Wavelength (Å)')
     plt.ylabel('Flux[10^(-17) ergs/s/cm^2/arcsec^2]')
@@ -511,7 +506,6 @@ def plot(wave,flux,continuum,residual,
     
     #SNR (fix)
     plt.figure(figsize=(14, 6))
-    plt.plot(wave, snr_narrow, label='SNR (3 Å )', color='green', alpha = 0.7)
     plt.plot(wave, snr_broad, label='SNR (15 Å )', color='black', alpha = 0.7)
     plot_all_fiber_mask(wave, all_fiber_mask, alpha=0.15, color='green')
     plt.axhline(y=0, color='black', linestyle='--', alpha=0.5)
@@ -545,24 +539,23 @@ def main(dr_name,galaxy_type):
     print_memory("After stacking")
 
     # apply filters
-    residual, smoothed_narrow, smoothed_broad, continuum = find_lines_in_spectrum(wave, flux, valid_bins)
+    residual, smoothed_broad, continuum = find_lines_in_spectrum(wave, flux, valid_bins)
     # calculate SNR
-    snr_narrow, snr_broad, noise = compute_SNR(residual, smoothed_narrow, smoothed_broad, valid_bins)
+    snr_broad, noise = compute_SNR(residual, smoothed_broad, valid_bins)
 
     # invalid
     invalid_waves = get_invalid_wavelengths(wave, valid_bins)
     print_memory("after filters")
     
     print("Saving results...")
-    save_results(wave, flux, error, residual, snr_narrow, snr_broad, valid_bins, 
+    save_results(wave, flux, error, residual, snr_broad, valid_bins, 
                 n_spectra, continuum, noise, base_output_dir, galaxy_type,dr_name,processed_fibers)
     print("Done with calculations!")
     print_memory("done with filters")
-    # smoothed curves alone:
-    smoothed_narrow = snr_narrow * noise
+    # smoothed curve alone:
     smoothed_broad = snr_broad * noise
 
-    plot(wave,flux,continuum,residual,smoothed_narrow, smoothed_broad,noise,snr_narrow,snr_broad,valid_bins,all_fiber_mask,plot_dir)
+    plot(wave,flux,continuum,residual, smoothed_broad,noise,snr_broad,valid_bins,all_fiber_mask,plot_dir)
     print_memory("after plotting")
     end_time = time.time()
     total_time = end_time - start_time
