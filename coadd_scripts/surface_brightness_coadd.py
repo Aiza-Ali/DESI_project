@@ -367,36 +367,35 @@ def find_lines_in_spectrum (wave, flux, valid_bins):
 # In[6]:
 
 
-def compute_SNR(residual, smoothed_broad, valid_bins):
+def compute_SNR(wave, smoothed_broad):
     """ estimate noise, find SNR """
-    # NOTE: this part of script isnt really useful - pass it into REAL SNR script in vscode
-    print("Computing SNR")
     bin_size=400
-    step=200
-    noise = np.full_like(residual, np.nan)
+    step = 200
+    # initial snr/noise to be same shape as residual with 3 A gaussian
+    noise = np.full_like(smoothed_broad, np.nan)
+    snr_broad = np.full_like(smoothed_broad, np.nan)
+    # wavelength range
+    wave_min = np.min(wave)
+    wave_max = np.max(wave)
+    # bins
+    bin_starts = np.arange(wave_min,wave_max,step)
 
-    for i in range(0,len(residual), step):
-        start = i
-        end = min(i + bin_size, len(residual))
+    for i,bin_start in enumerate(bin_starts):
+        end = bin_start + bin_size
+        # wavelength in range
+        bin_mask = (wave>= bin_start) & (wave <= end)
         
-        mask = valid_bins[start:end]
-        if np.sum(mask) > 10:
-            indices = np.where(mask)[0] + start
-            window_data = residual[indices]
-            # skip if NaN
-            if not np.any(np.isnan(window_data)):
-                # calculate noise
-                noise_estimate = 0.5 * (scoreatpercentile(window_data, 84) - scoreatpercentile(window_data, 16))
-                # assign noise to valid pixels in bin
-                valid_in_window = valid_bins[start:end]
-                noise[start:end][valid_in_window] = noise_estimate
-            
-    # initialize array to store SNR  
-    snr_broad = np.full_like(residual, np.nan)
-
-    # Calculate SNR @ valid noise / valid bins, not NaN
-    valid_for_snr = (noise > 0) & valid_bins & ~np.isnan(smoothed_broad)
-    snr_broad[valid_for_snr] = smoothed_broad[valid_for_snr] / noise[valid_for_snr]
+        # get data in range
+        window_broad = smoothed_broad[bin_mask]
+        # calculate noise/error
+        p16 = (np.percentile(window_broad, 16))
+        p84 = (np.percentile(window_broad, 84))
+        sigma = 0.5 * (p84 - p16)
+        # print(sigma)
+        # assign noise to all point in bin
+        noise[bin_mask] = sigma
+        # calculate SNR for this bin
+        snr_broad[bin_mask] = smoothed_broad[bin_mask]/sigma
 
     return snr_broad, noise
 
@@ -504,7 +503,7 @@ def plot(wave,flux,continuum,residual,
     plt.savefig(os.path.join(output_dir, f'smoothed_noise.png'))
     plt.close()
     
-    #SNR (fix)
+    #SNR
     plt.figure(figsize=(14, 6))
     plt.plot(wave, snr_broad, label='SNR (15 Å )', color='black', alpha = 0.7)
     plot_all_fiber_mask(wave, all_fiber_mask, alpha=0.15, color='green')
@@ -541,7 +540,7 @@ def main(dr_name,galaxy_type):
     # apply filters
     residual, smoothed_broad, continuum = find_lines_in_spectrum(wave, flux, valid_bins)
     # calculate SNR
-    snr_broad, noise = compute_SNR(residual, smoothed_broad, valid_bins)
+    snr_broad, noise = compute_SNR(wave, smoothed_broad)
 
     # invalid
     invalid_waves = get_invalid_wavelengths(wave, valid_bins)
