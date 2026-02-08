@@ -1,0 +1,50 @@
+mean_wave,datasets,snrs,n_recovered
+3934.8,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'BGS_loa_skyfiber_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-4.661875200085275, -4.736436602882829, -3.0330767840260777, -4.662346905264695, -4.732729873681874]",5
+6586.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[9.810326511025357, 8.975966180816174, 9.859579395858914, 9.036351526341523]",4
+4872.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.5433367853569493, -2.537535725715937]",2
+9533.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[14.051077104715278, 14.443864422614942]",2
+4387.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.6522528564769887, -2.6691113425142023]",2
+4365.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[3.0205565640219736, 2.9224419941963764, 3.0316342507426297, 2.929253444662592]",4
+8501.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.0656967051081976, -3.238797098233673, -3.071800514316486, -3.3434621787988874]",4
+1930.75,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-4.622110622586574, -3.1257127157923543, -4.004083889404808, -3.1870666799856497]",4
+6598.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-3.8775312127265993, -3.888073054605317]",2
+2798.2,"['BGS_iron_galaxy_result', 'BGS_iron_skyfiber_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-2.947647534480243, -2.8326039158750524, -3.053567275726875, -2.8382314835967377, 2.74105087324247]",5
+5185.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.51201447692125, -2.5126525902081958]",2
+9024.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-2.9671190199999047, -2.9150019177414634, -2.985427173880405, -3.0288417957521654]",4
+5172.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-4.452121250297745, -4.065896108883113, -4.456214794316657, -4.057108968102457]",4
+1933.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-4.307687192957431, -5.136122783192794, -3.5393411078123522, -3.8862405263536894]",2
+2343.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.742679560566265, -3.0427792472811306]",2
+9019.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.6329558327778724, -2.6741470188742773]",2
+1811.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[4.942712148262752, 3.767538128439628]",2
+5009.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[4.337882543802026, 4.288024557616703]",2
+6536.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.9411846821204013, -2.9365675863097844]",2
+5877.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[2.938952959737955, 2.935591574865155]",2
+6565.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[19.718657382816797, 9.281958653504855, 19.7002025700799, 9.245751820392403]",4
+5894.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-8.299381601805749, -7.990833090592938, -8.303565586215777, -8.001414524447995]",4
+9072.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[13.885642273668115, 13.150786446481419, 13.78892449951484, 13.156519938213949]",4
+2193.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[9.361344542210048, 5.747259095994004]",2
+6750.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.733859202325788, -2.9598800467158974, -3.7487979575685886, -2.968710131960357]",4
+9843.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-3.445125707530443, -3.2460844083301645]",2
+7047.75,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[3.6558636026658613, 4.072056453497865, 3.6423199296488606, 4.080239127572996]",4
+9826.25,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[7.385674080612744, 2.8566307305609815, 6.8213664677775, 6.236249192128911]",4
+6734.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[10.396908972135371, 5.5590433950872535, 10.414007672867601, 5.5413734684749665]",4
+9092.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.599201189736447, -3.6020751945461216, -3.5563684366691533, -3.538271062811056]",4
+4307.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-4.531735012728705, -4.5956159973929624, -4.526257234284383, -4.5932437068895755]",4
+7666.5,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.805752481301095, -4.2103294331188215, -3.7839729261813444, -4.105202704521877]",4
+6719.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result', 'LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[6.055616782925107, 3.706447178641136, 6.059997553119373, 3.7115034855439797]",4
+6575.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-3.8595317985250293, -3.8770270812401524]",2
+5786.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[-2.604372589289331, -2.6035263003061297]",2
+4863.0,"['BGS_iron_galaxy_result', 'BGS_loa_galaxy_result']","[3.055674340257119, 3.020312771671793]",2
+9395.5,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[3.0635519458211533, 2.7537204646934166]",2
+9377.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.883730303676084, -3.770375097032589]",2
+6600.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.140727249689131, -3.1637808088190864]",2
+1800.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[3.10931963305625, 2.8373467041404288]",2
+1853.5,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.841084146558759, -3.6962640083286953]",2
+9421.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.622894365556652, -2.8383175770205433]",2
+1656.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.12007884504756, -3.2811122224496585]",2
+8870.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-2.7965240797816695, -2.89673056713119]",2
+9443.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-3.4968476440712988, -2.7970650067471388]",2
+4103.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-2.5316201034348, -2.535017562970705]",2
+2326.5,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[4.241985498905908, 4.189602184109447]",2
+8809.0,"['LRG_iron_galaxy_result', 'LRG_loa_galaxy_result']","[-2.7474397706439886, -2.8715424444994793]",2
+4120.5,"['BGS_loa_skyfiber_result', 'LRG_loa_skyfiber_result']","[2.667809899693762, 2.8143027447428675]",2
