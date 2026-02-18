@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
+from scipy.ndimage import gaussian_filter1d
+from scipy.stats import scoreatpercentile
+
+def load_results(gal_type):
+    # load saved arrays from coadding
+    path = f"{gal_type}_loa_skyfiber_coadd_results.npz"
+    results = np.load(path)
+
+    wavelength = results['wavelength']
+    residual = results['residual']
+    flux = results['flux']
+    continuum = results['continuum']
+    valid_bins = results['valid_bins']
+    noise = results['noise']
+    snr_broad = results['snr_broad']
+
+    valid_wave = wavelength[valid_bins]
+    valid_residual = residual[valid_bins]
+    valid_flux = flux[valid_bins]
+    valid_continuum = continuum[valid_bins]
+    valid_noise = noise[valid_bins]
+    valid_snr_broad = snr_broad[valid_bins]
+
+    return valid_noise,valid_wave,valid_residual,valid_flux,valid_continuum,valid_snr_broad
